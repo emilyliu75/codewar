@@ -23,3 +23,13 @@ def declare_winner(fighter1, fighter2, first_attacker):
             return fighter1.name
 
 print(declare_winner(Fighter("Lew", 10, 2),Fighter("Harry", 5, 4), "Lew"))
+
+# refactored code
+
+def declare_winner(fighter1, fighter2, first_attacker):
+    hits_to_defeat_1 = math.ceil(fighter1.health / fighter2.damage_per_attack)
+    hits_to_defeat_2 = math.ceil(fighter2.health / fighter1.damage_per_attack)
+
+    if hits_to_defeat_1 == hits_to_defeat_2:
+        return first_attacker
+    return fighter1.name if hits_to_defeat_1 > hits_to_defeat_2 else fighter2.name
